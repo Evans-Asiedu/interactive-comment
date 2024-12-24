@@ -1,13 +1,52 @@
-body {
+*,
+*::before {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: "Rubik-Regular";
+  src: url("./font-style/static/Rubik-Regular.ttf") format("opentype");
 }
+
+@font-face {
+  font-family: "Rubik-Medium";
+  src: url("./font-style/static/Rubik-Medium.ttf") format("opentype");
+}
+
+@font-face {
+  font-family: "Rubik-Bold";
+  src: url("./font-style/static/Rubik-Bold.ttf") format("opentype");
+}
+:root {
+  /*primary colors*/
+  --moderate-blue: hsl(238, 40%, 52%);
+  --soft-red: hsl(358, 79%, 66%);
+  --light-grayish-blue: hsl(239, 57%, 85%);
+  --pale-red: hsl(357, 100%, 86%);
+
+  /*neutral colors*/
+  --dark-blue: hsl(212, 24%, 26%);
+  --grayish-blue: hsl(211, 10%, 45%);
+  --light-gray: hsl(223, 19%, 93%);
+  --very-light-gray: hsl(228, 33%, 97%);
+  --white: hsl(0, 0%, 100%);
+
+  /*font family*/
+  --font-ff-rubik-regular: "Rubik-Regular";
+  --font-ff-rubik-medium: "Rubik-Medium";
+  --font-ff-rubkik-bold: "Rubik-Bold";
+}
+
+body {
+  font-size: 1rem;
+  font-family: var(--font-ff-rubik-regular);
+}
+
+.app {
+  background-color: var(--very-light-gray);
+  min-height: 100vh;
+  padding: 1rem 1rem;
+}
+
