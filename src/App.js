@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 //import './App.css';
+import Button from "./components/button";
 
 class App extends Component {
   state = {};
 
-  render(){
-    return(
-      <div>Hello</div>
-    );
+  // Handle button click event
+  handleClick = () => {
+    //
+  };
+
+  render() {
+    return <Button name="yes, delete" onClick={this.handleClick} />;
   }
 }
 

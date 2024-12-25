@@ -39,6 +39,10 @@
   --font-ff-rubkik-bold: "Rubik-Bold";
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   font-size: 1rem;
   font-family: var(--font-ff-rubik-regular);
@@ -50,3 +54,37 @@ body {
   padding: 1rem 1rem;
 }
 
+/* Buttons */
+.btn {
+  border-radius: 5px;
+  border: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1.6rem 3.2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  margin: 1rem 0;
+  outline: 0;
+}
+
+.btn--primary {
+  background: var(--moderate-blue);
+  color: #fff;
+}
+
+.btn--secondary {
+  background: var(--grayish-blue);
+  color: #fff;
+}
+
+.btn--accent {
+  background: var(--soft-red);
+  color: #fff;
+}
+
+@media screen and (min-width: 1044px) {
+  .btn {
+    font-size: 1.4rem;
+  }
+}
