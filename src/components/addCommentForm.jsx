@@ -1,6 +1,6 @@
 const URL = process.env.PUBLIC_URL;
 
-export default function Form() {
+const AddCommentForm = function () {
   return (
     <form className="add-comment">
       <img
@@ -18,4 +18,6 @@ export default function Form() {
       <button>Send</button>
     </form>
   );
-}
+};
+
+export default AddCommentForm;

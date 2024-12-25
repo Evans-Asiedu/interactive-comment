@@ -65,8 +65,8 @@ body {
 .add-comment {
   background-color: var(--white);
   border-radius: 5px;
-  /*this should be removed at the final*/
-  margin: 1.6rem auto;
+  /*I made this only to make center, we can remove it later*/
+  margin: 0 auto;
   padding: 1.6rem 1.6rem 1.3rem;
   max-width: 52.8rem;
   display: flex;
@@ -127,5 +127,21 @@ body {
 @media screen and (min-width: 1044px) {
   .btn {
     font-size: 1.4rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .add-comment {
+    padding: 2.5rem;
+    max-width: 73.5rem;
+    justify-content: flex-start;
+    border-radius: 10px;
+  }
+
+  .add-comment__comment-input {
+    order: 0;
+    width: auto;
+    margin: 0 1.6rem 1.6rem 0;
+    flex-grow: 1;
   }
 }

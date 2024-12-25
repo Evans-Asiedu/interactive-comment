@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 //import './App.css';
 
-import Form from "./Form";
-
 import Button from "./components/button";
+import AddCommentForm from "./components/addCommentForm";
 
 class App extends Component {
   state = {};
@@ -11,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <Form />
+        <AddCommentForm />
         <Button name="yes, delete" onClick={this.handleClick} />
       </>
     );
