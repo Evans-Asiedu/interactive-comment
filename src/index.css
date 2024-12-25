@@ -39,14 +39,58 @@
   --font-ff-rubkik-bold: "Rubik-Bold";
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-family: var(--font-ff-rubik-regular);
+  /*I should move back this property back to the app element*/
+  background-color: var(--very-light-gray);
 }
 
 .app {
-  background-color: var(--very-light-gray);
   min-height: 100vh;
-  padding: 1rem 1rem;
+  padding: 1.6rem 1.6rem;
 }
 
+.comment__user-image {
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-right: 1.6rem;
+}
+
+.add-comment {
+  background-color: var(--white);
+  border-radius: 5px;
+  /*this should be removed at the final*/
+  margin: 1.6rem auto;
+  padding: 1.6rem 1.6rem 1.3rem;
+  max-width: 52.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-comment__comment-input {
+  order: -1;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 1.6rem;
+  padding: 1.6rem 2.3rem 6.6rem;
+  border: 1px solid var(--light-gray);
+}
+
+.add-comment__comment-input::placeholder {
+  color: var(--grayish-blue);
+  font-family: var(--font-ff-rubik-regular);
+  font-size: 1.65rem;
+}
+
+.add-comment button {
+  height: 4.8rem;
+  width: 10.4rem;
+}
