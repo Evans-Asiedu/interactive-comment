@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 //import './App.css';
 import ActionButton from "./components/actionButton";
+
 import CommentBody from "./components/commentBody";
 import Button from "./components/button";
 import AddCommentForm from "./components/addCommentForm";
+import CommentHeader from "./components/commentHeader";
 
 const URL = process.env.PUBLIC_URL;
 
@@ -14,6 +16,7 @@ class App extends Component {
     return (
       <>
         <AddCommentForm />
+        <CommentHeader />
         <Button name="yes, delete" onClick={this.handleClick} />
 
         <div class="comment__actions">
@@ -37,9 +40,12 @@ class App extends Component {
           />
         </div>
 
-        <CommentBody replyTo="amyrobson" text="Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've 
-        nailed the design and the responsiveness at various breakpoints works really well." />
-       </>
+        <CommentBody
+          replyTo="amyrobson"
+          text="Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've 
+        nailed the design and the responsiveness at various breakpoints works really well."
+        />
+      </>
     );
   }
   handleClick = () => {

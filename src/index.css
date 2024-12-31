@@ -55,6 +55,22 @@ body {
   padding: 1.6rem 1.6rem;
 }
 
+.comment__heading {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.comment__user-name {
+  font-size: 1.6rem;
+  color: var(--dark-blue);
+}
+
+.comment__created-time {
+  color: var(--grayish-blue);
+  margin-left: 1.6rem;
+}
+
 /* Comment Input */
 .comment__user-image {
   border-radius: 50%;
