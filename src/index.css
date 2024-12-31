@@ -145,3 +145,49 @@ body {
     flex-grow: 1;
   }
 }
+
+
+/* Action Buttons */
+.comment__actions {
+  display: flex;
+  align-items: right;
+  gap: 1.6rem;
+}
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: filter 0.15s;
+  text-transform: capitalize;
+  font-family: var(--font-ff-rubik-medium);
+  border: none;
+  background: none;
+
+}
+.action-button:hover {
+  filter: brightness(2);
+}
+
+.action-button__icon {
+}
+
+.action-button__label {
+  font-size: 1.6rem;
+}
+
+/* Modifier for reply button */
+.action-button--reply {
+  color: var(--moderate-blue);
+}
+
+/* Modifier for edit button */
+.action-button--edit {
+  color: var(--moderate-blue);
+}
+
+/* Modifier for delete button */
+.action-button--delete {
+  color: var(--soft-red); 
+}
