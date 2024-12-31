@@ -55,6 +55,7 @@ body {
   padding: 1.6rem 1.6rem;
 }
 
+/* Comment Input */
 .comment__user-image {
   border-radius: 50%;
   width: 3.2rem;
@@ -95,6 +96,26 @@ body {
   width: 10.4rem;
 }
 
+@media screen and (min-width: 748px) {
+  .add-comment {
+    padding: 2.5rem;
+    max-width: 73.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+    border-radius: 10px;
+    flex-wrap: initial;
+  }
+
+  .add-comment__comment-input {
+    order: 0;
+    width: auto;
+    margin: 0 1.6rem 1.6rem 0;
+    flex-grow: 1;
+  }
+}
+
 /* Buttons */
 .btn {
   border-radius: 5px;
@@ -130,23 +151,6 @@ body {
   }
 }
 
-@media (min-width: 1440px) {
-  .add-comment {
-    padding: 2.5rem;
-    max-width: 73.5rem;
-    justify-content: flex-start;
-    border-radius: 10px;
-  }
-
-  .add-comment__comment-input {
-    order: 0;
-    width: auto;
-    margin: 0 1.6rem 1.6rem 0;
-    flex-grow: 1;
-  }
-}
-
-
 /* Action Buttons */
 .comment__actions {
   display: flex;
@@ -164,7 +168,6 @@ body {
   font-family: var(--font-ff-rubik-medium);
   border: none;
   background: none;
-
 }
 .action-button:hover {
   filter: brightness(2);
@@ -189,5 +192,5 @@ body {
 
 /* Modifier for delete button */
 .action-button--delete {
-  color: var(--soft-red); 
+  color: var(--soft-red);
 }

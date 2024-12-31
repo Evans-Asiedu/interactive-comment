@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import './App.css';
-import ActionButton from './components/actionButton';
+import ActionButton from "./components/actionButton";
 import Button from "./components/button";
 import AddCommentForm from "./components/addCommentForm";
 
@@ -26,7 +26,7 @@ class App extends Component {
             type="edit"
             icon={`${URL}/images/icon-edit.svg`}
             label="Edit"
-            onClick={this.handleClick}          
+            onClick={this.handleClick}
           />
           <ActionButton
             type="reply"
@@ -35,7 +35,6 @@ class App extends Component {
             onClick={this.handleClick}
           />
         </div>
-
       </>
     );
   }

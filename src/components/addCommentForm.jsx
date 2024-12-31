@@ -1,6 +1,6 @@
 const URL = process.env.PUBLIC_URL;
 
-const AddCommentForm = function () {
+const AddCommentForm = () => {
   return (
     <form className="add-comment">
       <img
