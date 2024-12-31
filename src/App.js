@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 //import './App.css';
 import ActionButton from "./components/actionButton";
+import CommentBody from "./components/commentBody";
 import Button from "./components/button";
 import AddCommentForm from "./components/addCommentForm";
 
@@ -35,7 +36,10 @@ class App extends Component {
             onClick={this.handleClick}
           />
         </div>
-      </>
+
+        <CommentBody replyTo="amyrobson" text="Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've 
+        nailed the design and the responsiveness at various breakpoints works really well." />
+       </>
     );
   }
   handleClick = () => {

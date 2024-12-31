@@ -194,3 +194,15 @@ body {
 .action-button--delete {
   color: var(--soft-red);
 }
+
+/* Comment Body */
+.comment__body {
+  font-family: var(--font-ff-rubik-regular);
+  color: var(--grayish-blue);
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+}
+
+.comment__reply-to {
+  color: var(--moderate-blue);
+}
