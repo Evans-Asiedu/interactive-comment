@@ -1,60 +1,28 @@
 import React, { useState } from 'react';
+import './index.css';
 
-export default function VotingButton() {
-    const [votes, setVotes] = useState(0);
+const VotingButton = ({ votes = 0, handleDecrement, handleIncrement }) => {
+    const [currentVotes, setCurrentVotes] = useState(votes);
 
-    const handleDecreaseVote = () => {
-        setVotes((prevVotes) => Math.max(prevVotes - 1, 0)); // Prevent negative votes
-    };
-
-    const handleIncreaseVote = () => {
-        setVotes((prevVotes) => prevVotes + 1);
-    };
-
+    
     return (
-        <div style={styles.btnContainer}>
+        <div className="btn-container">
             <button
-                style={styles.button}
-                onClick={handleDecreaseVote}
-                disabled={votes === 0}
+                className="button"
+                onClick={handleDecrement}
+                disabled={currentVotes === 0}
             >
                 -
             </button>
-            <span style={styles.votes}>{votes}</span>
+            <span className="votes">{currentVotes}</span>
             <button
-                style={styles.button}
-                onClick={handleIncreaseVote}
+                className="button"
+                onClick={handleIncrement}
             >
                 +
             </button>
         </div>
     );
-}
-
-const styles = {
-    btnContainer: {
-        display: 'flex',
-        gap: '0.8rem',
-        fontSize: '22px',
-        alignItems: 'center',
-        border: '1px dotted',
-        padding: '5px',
-        justifyContent: 'center',
-        width:"30%"
-    },
-    button: {
-        border: 'none',
-        background: '#007BFF',
-        color: 'white',
-        fontSize: '20px',
-        cursor: 'pointer',
-        padding: '5px 10px',
-        borderRadius: '5px',
-    },
-    votes: {
-        fontSize: '20px',
-        fontWeight: 'bold',
-        textAlign: 'center',
-        minWidth: '30px',
-    },
 };
+
+export default VotingButton;
