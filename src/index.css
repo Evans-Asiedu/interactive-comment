@@ -58,7 +58,7 @@ body {
 .comment__heading {
   display: flex;
   align-items: center;
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .comment__user-name {
@@ -168,11 +168,6 @@ body {
 }
 
 /* Action Buttons */
-.comment__actions {
-  display: flex;
-  align-items: right;
-  gap: 1.6rem;
-}
 .action-button {
   display: flex;
   align-items: center;
@@ -279,5 +274,47 @@ body {
 
   .voting-button--count {
     font-size: 18px;
+  }
+}
+
+/* Comments */
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+/* Comment Card */
+.comment {
+  position: relative;
+  background-color: var(--white);
+  border-radius: .8rem;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.6rem;
+}
+
+.comment__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+}
+
+.comment__actions {
+  display: inline-flex;
+  gap: 1.6rem;
+  position: absolute;
+  right: 1.6rem;
+  top: 1.6rem;
+}
+
+@media (max-width: 768px) {
+  .comment {
+    flex-direction: column-reverse;
+  }
+  .comment__actions {
+    top: auto;
   }
 }

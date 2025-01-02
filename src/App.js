@@ -8,6 +8,7 @@ import CommentHeader from "./components/commentHeader";
 import AddCommentForm from "./components/addCommentForm";
 import VotingButton from "./components/voting";
 import { getComments } from "./services/commentService";
+import CommnetCard from "./components/commentCard";
 
 const URL = process.env.PUBLIC_URL;
 
@@ -27,9 +28,12 @@ class App extends Component {
 
     return (
       <>
-        {comments.map((c) => (
-          <CommentBody replyTo={c.user.username} text={c.content} />
-        ))}
+        <div className="comments">
+          {comments.map((c) => (
+            <CommnetCard comment={c} key={c.id}/>
+          ))}
+        </div>
+        
       </>
     );
   }
