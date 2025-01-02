@@ -1,50 +1,35 @@
 import React, { Component } from "react";
 //import './App.css';
-import ActionButton from "./components/actionButton";
 
+import ActionButton from "./components/actionButton";
 import CommentBody from "./components/commentBody";
 import Button from "./components/button";
-import AddCommentForm from "./components/addCommentForm";
 import CommentHeader from "./components/commentHeader";
+import AddCommentForm from "./components/addCommentForm";
+import VotingButton from "./components/voting";
+import { getComments } from "./services/commentService";
 
 const URL = process.env.PUBLIC_URL;
 
 class App extends Component {
-  state = {};
+  state = {
+    comments: [],
+  };
+
+  async componentDidMount() {
+    const comments = getComments();
+    this.setState({ comments });
+  }
 
   render() {
+    const { comments } = this.state;
+    console.log("comments", comments);
+
     return (
       <>
-        <AddCommentForm />
-        <CommentHeader />
-        <Button name="yes, delete" onClick={this.handleClick} />
-
-        <div class="comment__actions">
-          <ActionButton
-            type="delete"
-            icon={`${URL}/images/icon-delete.svg`}
-            label="Delete"
-            onClick={this.handleClick}
-          />
-          <ActionButton
-            type="edit"
-            icon={`${URL}/images/icon-edit.svg`}
-            label="Edit"
-            onClick={this.handleClick}
-          />
-          <ActionButton
-            type="reply"
-            icon={`${URL}/images/icon-reply.svg`}
-            label="Reply"
-            onClick={this.handleClick}
-          />
-        </div>
-
-        <CommentBody
-          replyTo="amyrobson"
-          text="Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've 
-        nailed the design and the responsiveness at various breakpoints works really well."
-        />
+        {comments.map((c) => (
+          <CommentBody replyTo={c.user.username} text={c.content} />
+        ))}
       </>
     );
   }

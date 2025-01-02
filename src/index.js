@@ -1,35 +1,17 @@
-import React, { useState } from 'react';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
-const VotingButton = ({ votes = 0 }) => {
-    const [currentVotes, setCurrentVotes] = useState(votes);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-    const handleIncrement = () => {
-        setCurrentVotes((prevVotes) => prevVotes + 1);
-    };
-
-    const handleDecrement = () => {
-        setCurrentVotes((prevVotes) => Math.max(prevVotes - 1, 0));
-    };
-
-    return (
-        <div className="btn-container">
-            <button
-                className="button"
-                onClick={handleDecrement}
-                disabled={currentVotes === 0}
-            >
-                -
-            </button>
-            <span className="votes">{currentVotes}</span>
-            <button
-                className="button"
-                onClick={handleIncrement}
-            >
-                +
-            </button>
-        </div>
-    );
-};
-
-export default VotingButton;
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
