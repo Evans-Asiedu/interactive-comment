@@ -58,12 +58,13 @@ body {
 .comment__heading {
   display: flex;
   align-items: center;
-  /* margin-bottom: 2rem; */
+  margin-bottom: 1.6rem;
 }
 
 .comment__user-name {
   font-size: 1.6rem;
   color: var(--dark-blue);
+  font-family: var(--font-ff-rubkik-bold);
 }
 
 .comment__created-time {
