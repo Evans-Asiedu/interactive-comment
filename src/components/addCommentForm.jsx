@@ -4,7 +4,7 @@ const AddCommentForm = () => {
   return (
     <form className="add-comment">
       <img
-        className="comment__user-image"
+        className="comment__user-image_in_form"
         src={`${URL}/images/avatars/image-amyrobson.png`}
         alt="the user who puts the comment"
       />

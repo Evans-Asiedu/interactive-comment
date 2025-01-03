@@ -32,6 +32,7 @@ class App extends Component {
           {comments.map((c) => (
             <CommnetCard comment={c} key={c.id}/>
           ))}
+          <AddCommentForm/>
         </div>
         
       </>

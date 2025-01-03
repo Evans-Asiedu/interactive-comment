@@ -86,17 +86,19 @@ body {
   /*I made this only to make center, we can remove it later*/
   margin: 0 auto;
   padding: 1.6rem 1.6rem 1.3rem;
-  max-width: 52.8rem;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items:flex-start;
   flex-wrap: wrap;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .add-comment__comment-input {
-  order: -1;
+  /* order: -1; */
   border-radius: 8px;
-  width: 100%;
+  width: 80%;
   margin-bottom: 1.6rem;
   padding: 1.6rem 2.3rem 6.6rem;
   border: 1px solid var(--light-gray);
@@ -106,23 +108,40 @@ body {
   color: var(--grayish-blue);
   font-family: var(--font-ff-rubik-regular);
   font-size: 1.65rem;
+  margin-left: 1rem;
 }
 
 .add-comment button {
   height: 4.8rem;
   width: 10.4rem;
+  background-color: var(--moderate-blue);
+  border: none;
+  border-radius: 3px;
+  color: var(--white);
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+.add-comment button:hover{
+  background-color: var(--light-grayish-blue);
+}
+.comment__user-image_in_form {
+  border-radius: 50%;
+  width: 3.2rem;
+  height: 3.2rem;
+  margin-right: 1rem;
+  object-fit: cover;
 }
 
-@media screen and (min-width: 748px) {
+@media screen and (max-width: 748px) {
   .add-comment {
-    padding: 2.5rem;
-    max-width: 73.5rem;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: start;
+    align-items: center;
     border-radius: 10px;
     flex-wrap: initial;
+    gap: 1rem;
   }
 
   .add-comment__comment-input {
@@ -130,6 +149,17 @@ body {
     width: auto;
     margin: 0 1.6rem 1.6rem 0;
     flex-grow: 1;
+    padding: 2rem 0;
+  }
+  .comment__user-image_in_form {
+    width: 2.8rem;
+    height: 2.8rem;
+    margin-right: 1rem;
+  }
+  .add-comment button{
+    height: 3.8rem;
+    width: 9.4rem;
+    font-size: 1.2rem;
   }
 }
 
