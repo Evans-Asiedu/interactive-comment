@@ -119,7 +119,7 @@ body {
   margin-left: 1rem;
 }
 
-.add-comment button {
+/* .add-comment button {
   height: 4.8rem;
   width: 10.4rem;
   background-color: var(--moderate-blue);
@@ -129,7 +129,7 @@ body {
   font-size: 1.4rem;
   font-weight: bold;
   transition: background-color 0.3s ease;
-}
+} */
 .add-comment button:hover {
   background-color: var(--light-grayish-blue);
 }
@@ -168,11 +168,11 @@ body {
     height: 2.8rem;
     margin-right: 1rem;
   }
-  .add-comment button {
+  /* .add-comment button {
     height: 3.8rem;
     width: 9.4rem;
     font-size: 1.2rem;
-  }
+  } */
 }
 
 /* Buttons */
@@ -181,11 +181,11 @@ body {
   border: 0;
   font-size: 1.6rem;
   font-weight: 600;
-  padding: 1.6rem 3.2rem;
+  padding: 1.2rem 2.3rem;
   text-transform: uppercase;
   cursor: pointer;
   text-align: center;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
   outline: 0;
 }
 

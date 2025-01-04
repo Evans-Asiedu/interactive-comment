@@ -7,7 +7,7 @@ import Button from "./components/button";
 import CommentHeader from "./components/commentHeader";
 import AddCommentForm from "./components/addCommentForm";
 import VotingButton from "./components/voting";
-import { getComments } from "./services/commentService";
+import { addComment, getComments } from "./services/commentService";
 import CommnetCard from "./components/commentCard";
 
 const URL = process.env.PUBLIC_URL;
@@ -22,9 +22,15 @@ class App extends Component {
     this.setState({ comments });
   }
 
+  // for handling adding of comment
+  handleAddComment = (content) => {
+    console.log("content", content);
+    addComment(content);
+    this.setState({});
+  };
+
   render() {
     const { comments } = this.state;
-    console.log("comments", comments);
 
     return (
       <>
@@ -33,15 +39,12 @@ class App extends Component {
             {comments.map((c) => (
               <CommnetCard comment={c} key={c.id} />
             ))}
-            <AddCommentForm />
+            <AddCommentForm onAddComment={this.handleAddComment} />
           </div>
         </div>
       </>
     );
   }
-  handleClick = () => {
-    //
-  };
 }
 
 export default App;
