@@ -48,11 +48,18 @@ body {
   font-family: var(--font-ff-rubik-regular);
   /*I should move back this property back to the app element*/
   background-color: var(--very-light-gray);
+
+  /* Set inner container to center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .app {
   min-height: 100vh;
-  padding: 1.6rem 1.6rem;
+  max-width: 1140px;
+  padding: 1rem 1.2rem;
+  position: relative;
 }
 
 .comment__heading {
@@ -84,21 +91,22 @@ body {
   background-color: var(--white);
   border-radius: 5px;
   /*I made this only to make center, we can remove it later*/
-  margin: 0 auto;
-  padding: 1.6rem 1.6rem 1.3rem;
+  margin: 1rem 1.2rem;
+  padding: 1.6rem 1.2rem 1.3rem 1.2rem;
   display: flex;
   justify-content: space-between;
-  align-items:flex-start;
+  align-items: center;
   flex-wrap: wrap;
   position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  width: calc(100% - 2.4rem);
 }
 
 .add-comment__comment-input {
-  /* order: -1; */
+  order: -1;
   border-radius: 8px;
-  width: 80%;
+  width: 100%;
   margin-bottom: 1.6rem;
   padding: 1.6rem 2.3rem 6.6rem;
   border: 1px solid var(--light-gray);
@@ -122,7 +130,7 @@ body {
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
-.add-comment button:hover{
+.add-comment button:hover {
   background-color: var(--light-grayish-blue);
 }
 .comment__user-image_in_form {
@@ -133,15 +141,19 @@ body {
   object-fit: cover;
 }
 
-@media screen and (max-width: 748px) {
+@media screen and (min-width: 748px) {
   .add-comment {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
+    align-items: start;
     border-radius: 10px;
+    padding: 1rem;
     flex-wrap: initial;
     gap: 1rem;
+    left: 0;
+    right: 0;
+    margin: 1rem 1.2rem;
   }
 
   .add-comment__comment-input {
@@ -156,7 +168,7 @@ body {
     height: 2.8rem;
     margin-right: 1rem;
   }
-  .add-comment button{
+  .add-comment button {
     height: 3.8rem;
     width: 9.4rem;
     font-size: 1.2rem;
@@ -282,7 +294,7 @@ body {
   color: var(--moderate-blue);
 }
 
-.voting-button__icon:hover path{
+.voting-button__icon:hover path {
   fill: var(--moderate-blue);
 }
 
@@ -290,7 +302,7 @@ body {
 @media (max-width: 768px) {
   .voting__container {
     flex-direction: row;
-    padding: .8rem 1.2rem;
+    padding: 0.8rem 1.2rem;
   }
 }
 
@@ -298,14 +310,14 @@ body {
 .comments {
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.6rem 0rem;
 }
 
 /* Comment Card */
 .comment {
   position: relative;
   background-color: var(--white);
-  border-radius: .8rem;
+  border-radius: 0.8rem;
   padding: 1.6rem;
   display: flex;
   flex-direction: row;

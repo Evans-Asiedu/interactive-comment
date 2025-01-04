@@ -28,13 +28,14 @@ class App extends Component {
 
     return (
       <>
-        <div className="comments">
-          {comments.map((c) => (
-            <CommnetCard comment={c} key={c.id}/>
-          ))}
-          <AddCommentForm/>
+        <div className="app">
+          <div className="comments">
+            {comments.map((c) => (
+              <CommnetCard comment={c} key={c.id} />
+            ))}
+            <AddCommentForm />
+          </div>
         </div>
-        
       </>
     );
   }
