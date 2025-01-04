@@ -35,12 +35,14 @@ class App extends Component {
     return (
       <>
         <div className="app">
-          <div className="comments">
-            {comments.map((c) => (
-              <CommnetCard comment={c} key={c.id} />
-            ))}
-            <AddCommentForm onAddComment={this.handleAddComment} />
+          <div className="scrollable-content">
+            <div className="comments">
+              {comments.map((c) => (
+                <CommnetCard comment={c} key={c.id} />
+              ))}
+            </div>
           </div>
+          <AddCommentForm onAddComment={this.handleAddComment} />
         </div>
       </>
     );

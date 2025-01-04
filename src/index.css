@@ -56,10 +56,20 @@ body {
 }
 
 .app {
-  min-height: 100vh;
   max-width: 1140px;
   padding: 1rem 1.2rem;
+  height: 100vh;
+  min-height: 100vh;
   position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.scrollable-content {
+  flex: 1;
+  overflow-y: auto; /* Makes the content scrollable */
+  padding: 10px;
 }
 
 .comment__heading {
