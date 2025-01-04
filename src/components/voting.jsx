@@ -2,8 +2,15 @@ import React, { useState } from "react";
 // import "./index.css";
 const URL = process.env.PUBLIC_URL;
 
-const VotingButton = ({ votes = 0, handleDecrement, handleIncrement }) => {
+const VotingButton = ({ votes = 0 }) => {
   const [currentVotes, setCurrentVotes] = useState(votes);
+  function handleIncrement() {
+    setCurrentVotes((previous)=>previous + 1)
+  }
+  function handleDecrement() {
+    setCurrentVotes((previous)=>previous > 0? previous - 1: 0)
+  }
+
 
   return (
     <div className="voting__container">
