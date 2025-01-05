@@ -26,7 +26,7 @@ const CommnetCard = ({ comment }) => {
             <VotingButton />
 
             <div>
-                <CommentHeader />
+                <CommentHeader comment={comment} />
                 <CommentBody replyTo={comment?.replyingTo} text={comment.content} />
             </div>
             <div className="comment__actions">
