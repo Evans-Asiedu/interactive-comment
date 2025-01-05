@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Button from "./button";
+import data from "../services/data.json";
 
 const URL = process.env.PUBLIC_URL;
+const currentUser = data.currentUser
 
 const AddCommentForm = ({ onAddComment, initialValue = "" }) => {
   const [comment, setComment] = useState(initialValue);
@@ -23,7 +25,7 @@ const AddCommentForm = ({ onAddComment, initialValue = "" }) => {
     >
       <img
         className="comment__user-image_in_form"
-        src={`${URL}/images/avatars/image-amyrobson.png`}
+        src={currentUser.image.png}
         alt="the user who puts the comment"
       />
 
