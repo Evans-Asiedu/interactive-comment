@@ -15,11 +15,9 @@ const CommnetCard = ({ comment }) => {
         setShowReplyForm(!showReplyForm);
     }
     const handleAddReply = (replyContent) => {
-        // Handle the reply submission here
         console.log(`Replying to comment ${comment.id} with: ${replyContent}`);
         addReply(comment.id, `@${comment.user.username} ${replyContent}`, comment.user.username);
-        // You can call an API or update the state to add the reply
-        setShowReplyForm(false); // Hide the form after submission
+        setShowReplyForm(false); 
     };
 
     return (
