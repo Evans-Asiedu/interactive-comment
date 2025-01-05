@@ -3,8 +3,8 @@ import Button from "./button";
 
 const URL = process.env.PUBLIC_URL;
 
-const AddCommentForm = ({ onAddComment }) => {
-  const [comment, setComment] = useState("");
+const AddCommentForm = ({ onAddComment, initialValue = "" }) => {
+  const [comment, setComment] = useState(initialValue);
 
   const handleAddComment = () => {
     if (comment.trim()) {

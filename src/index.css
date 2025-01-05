@@ -107,10 +107,10 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: calc(100% - 2.4rem);
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* width: calc(100% - 2.4rem); */
 }
 
 .add-comment__comment-input {
@@ -356,4 +356,9 @@ body {
   .comment__actions {
     top: auto;
   }
+}
+
+/* Reply form */
+.reply-form-container {
+
 }
