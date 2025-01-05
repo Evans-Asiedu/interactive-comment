@@ -5,12 +5,14 @@ import CommentHeader from "./commentHeader";
 import VotingButton from "./voting";
 import AddCommentForm from './addCommentForm';
 import { addReply } from '../services/commentService';
+import data from '../services/data.json';
 
 const URL = process.env.PUBLIC_URL;
+const currentUser = data.currentUser
 
 const CommnetCard = ({ comment }) => {
     const [showReplyForm, setShowReplyForm] = useState(false);
-
+    
     const handleReplyClick = () => {
         setShowReplyForm(!showReplyForm);
     }
@@ -20,21 +22,41 @@ const CommnetCard = ({ comment }) => {
         setShowReplyForm(false); 
     };
 
+    const isOwner = comment.user.username === currentUser.username;
+
     return (
         <>
         <article className="comment">
             <VotingButton />
 
             <div>
-                <CommentHeader comment={comment} />
+                <CommentHeader comment={comment}/>
                 <CommentBody replyTo={comment?.replyingTo} text={comment.content} />
             </div>
             <div className="comment__actions">
-                <ActionButton   
+                {
+                    isOwner ? (
+                        <>
+                            <ActionButton 
+                                type="delete"
+                                icon={`${URL}/images/icon-delete.svg`}
+                                label="Delete"
+                                onClick={() => console.log("Delete clicked")}
+                            />
+                            <ActionButton 
+                                type="edit"
+                                icon={`${URL}/images/icon-edit.svg`}
+                                label="Edit"
+                                onClick={() => console.log("Edit clicked")}
+                            />
+                        </>
+                    ) : <ActionButton   
                     type="reply"
                     icon={`${URL}/images/icon-reply.svg`}
                     label="Reply"
                     onClick={handleReplyClick}/>
+                }
+               
             </div>
         </article>
         {/* Show the reply form when the "Reply" button is clicked */}
