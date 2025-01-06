@@ -334,6 +334,11 @@ body {
   gap: 1.6rem;
 }
 
+.comment--reply {
+  width: 90%;
+  align-self: flex-end;
+}
+
 .comment__head {
   display: flex;
   align-items: center;
@@ -360,5 +365,5 @@ body {
 
 /* Reply form */
 .reply-form-container {
-
+  width: 100%;
 }

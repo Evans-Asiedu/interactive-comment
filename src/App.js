@@ -7,8 +7,9 @@ import Button from "./components/button";
 import CommentHeader from "./components/commentHeader";
 import AddCommentForm from "./components/addCommentForm";
 import VotingButton from "./components/voting";
-import { addComment, getComments } from "./services/commentService";
+import { addComment, getComments, addReply } from "./services/commentService";
 import CommnetCard from "./components/commentCard";
+import Comments from "./components/comment";
 
 const URL = process.env.PUBLIC_URL;
 
@@ -24,9 +25,16 @@ class App extends Component {
 
   // for handling adding of comment
   handleAddComment = (content) => {
-    console.log("content", content);
     addComment(content);
-    this.setState({});
+    const updatedComments = getComments();
+    this.setState({ comments: updatedComments });
+  };
+
+  // for handling replies
+  handleAddReply = (commentId, replyContent, replyingTo) => {
+    addReply(commentId, replyContent, replyingTo);
+    const updatedComments = getComments();
+    this.setState({ comments: updatedComments });
   };
 
   render() {
@@ -36,11 +44,7 @@ class App extends Component {
       <>
         <div className="app">
           <div className="scrollable-content">
-            <div className="comments">
-              {comments.map((c) => (
-                <CommnetCard comment={c} key={c.id} />
-              ))}
-            </div>
+            <Comments comments={comments} onAddReply={this.handleAddReply} />
           </div>
           <AddCommentForm onAddComment={this.handleAddComment} />
         </div>
