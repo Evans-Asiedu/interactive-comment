@@ -5,22 +5,21 @@ import CommentHeader from "./commentHeader";
 import VotingButton from "./voting";
 import AddCommentForm from "./addCommentForm";
 import data from "../services/data.json";
-import { editComment } from "../services/commentService";
 
 const URL = process.env.PUBLIC_URL;
 const currentUser = data.currentUser;
 
-const CommnetCard = ({ comment, isReply, onAddReply }) => {
+const CommnetCard = ({ comment, isReply, onAddReply, onEdit }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(comment?.replyingTo + comment.content);
+  const [editedContent, setEditedContent] = useState(comment?.replyingTo || '' + comment.content);
 
   const handleReplyClick = () => {
     setShowReplyForm(!showReplyForm);
   };
 
   const handleAddReply = (replyContent) => {
-    console.log(`Replying to comment ${comment.id} with: ${replyContent}`);
+    // console.log(`Replying to comment ${comment.id} with: ${replyContent}`);
 
     const updatedReplyContent = replyContent.replace(
       `@${comment.user.username} `,
@@ -36,9 +35,8 @@ const CommnetCard = ({ comment, isReply, onAddReply }) => {
     setIsEditing(!isEditing);
   }
   
-  const onUpdateComment = ()=> {
-    console.log(`Updating comment ${comment.id} with: ${editedContent}`);
-    editComment(comment.id, editedContent);
+  const onEditComment = ()=> {
+    onEdit(comment.id, editedContent);
     setIsEditing(false);
   }
 
@@ -58,7 +56,7 @@ const CommnetCard = ({ comment, isReply, onAddReply }) => {
                 className="comment__body comment__edit__input"
                 style={{paddingLeft: "1.5rem"}}
                 rows="3"/>
-                <button onClick={onUpdateComment} className="btn btn--primary">Update</button>
+                <button onClick={onEditComment} className="btn btn--primary">Update</button>
               </div>
             ) : <CommentBody replyTo={comment?.replyingTo} text={comment.content} />
           }

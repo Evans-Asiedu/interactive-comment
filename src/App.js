@@ -7,7 +7,7 @@ import Button from "./components/button";
 import CommentHeader from "./components/commentHeader";
 import AddCommentForm from "./components/addCommentForm";
 import VotingButton from "./components/voting";
-import { addComment, getComments, addReply } from "./services/commentService";
+import { addComment, getComments, addReply, editComment } from "./services/commentService";
 import CommnetCard from "./components/commentCard";
 import Comments from "./components/comment";
 
@@ -37,6 +37,11 @@ class App extends Component {
     this.setState({ comments: updatedComments });
   };
 
+  handleEditComment = (commentId, newContent) => {
+    const updatedComments = editComment(commentId, newContent);
+    this.setState({ comments: updatedComments });
+  }
+
   render() {
     const { comments } = this.state;
 
@@ -44,7 +49,7 @@ class App extends Component {
       <>
         <div className="app">
           <div className="scrollable-content">
-            <Comments comments={comments} onAddReply={this.handleAddReply} />
+            <Comments comments={comments} onAddReply={this.handleAddReply} onEdit={this.handleEditComment} />
           </div>
           <AddCommentForm onAddComment={this.handleAddComment} />
         </div>

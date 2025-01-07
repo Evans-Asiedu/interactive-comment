@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CommnetCard from "./commentCard";
 import { getReplies } from "../services/commentService";
 
-const Comments = ({ comments, onAddReply }) => {
+const Comments = ({ comments, onAddReply, onEdit }) => {
   const renderReplyCard = (commentId) => {
     const replies = getReplies(commentId);
     return replies.map((r) => (
@@ -11,6 +11,7 @@ const Comments = ({ comments, onAddReply }) => {
         key={r.id}
         isReply={true}
         onAddReply={onAddReply}
+        onEdit={onEdit}
       />
     ));
   };
@@ -24,6 +25,7 @@ const Comments = ({ comments, onAddReply }) => {
             key={c.id}
             isReply={false}
             onAddReply={onAddReply}
+            onEdit={onEdit}
           />
           {renderReplyCard(c.id)}
         </>
