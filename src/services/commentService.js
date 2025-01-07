@@ -57,3 +57,12 @@ export const removeComment = (id) => {
 
   return false;
 };
+export const editComment = (commentId, editedContent) => {
+  const updatedComments = data.comments.map((comment) =>
+    comment.id === commentId ? { ...comment, content: editedContent } : comment
+  );
+
+  console.log(updatedComments);
+  data.comments = updatedComments;
+  return updatedComments;
+};

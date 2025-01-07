@@ -1,7 +1,6 @@
 const URL = process.env.PUBLIC_URL;
 
 const CommentHeader = function ({comment}) {
-  console.log(comment)
 
   return (
     <div className="comment__heading">

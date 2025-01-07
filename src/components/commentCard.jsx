@@ -4,14 +4,16 @@ import CommentBody from "./commentBody";
 import CommentHeader from "./commentHeader";
 import VotingButton from "./voting";
 import AddCommentForm from "./addCommentForm";
-import { addReply } from "../services/commentService";
 import data from "../services/data.json";
+import { editComment } from "../services/commentService";
 
 const URL = process.env.PUBLIC_URL;
 const currentUser = data.currentUser;
 
 const CommnetCard = ({ comment, isReply, onAddReply }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState(comment?.replyingTo + comment.content);
 
   const handleReplyClick = () => {
     setShowReplyForm(!showReplyForm);
@@ -30,14 +32,36 @@ const CommnetCard = ({ comment, isReply, onAddReply }) => {
 
   const isOwner = comment.user.username === currentUser.username;
 
+  const handleEditClick = () => {
+    setIsEditing(!isEditing);
+  }
+  
+  const onUpdateComment = ()=> {
+    console.log(`Updating comment ${comment.id} with: ${editedContent}`);
+    editComment(comment.id, editedContent);
+    setIsEditing(false);
+  }
+
   return (
     <>
       <article className={isReply ? "comment comment--reply" : "comment"}>
         <VotingButton />
 
-        <div>
+        <div style={{width: "100%"}}>
           <CommentHeader comment={comment} />
-          <CommentBody replyTo={comment?.replyingTo} text={comment.content} />
+          {
+            isEditing ? (
+              <div className="comment__edit">
+              <textarea 
+                value={editedContent} 
+                onChange={(e)=>setEditedContent(e.target.value)}
+                className="comment__body comment__edit__input"
+                style={{paddingLeft: "1.5rem"}}
+                rows="3"/>
+                <button onClick={onUpdateComment} className="btn btn--primary">Update</button>
+              </div>
+            ) : <CommentBody replyTo={comment?.replyingTo} text={comment.content} />
+          }
         </div>
         <div className="comment__actions">
           {isOwner ? (
@@ -52,7 +76,7 @@ const CommnetCard = ({ comment, isReply, onAddReply }) => {
                 type="edit"
                 icon={`${URL}/images/icon-edit.svg`}
                 label="Edit"
-                onClick={() => console.log("Edit clicked")}
+                onClick={handleEditClick}
               />
             </>
           ) : (
