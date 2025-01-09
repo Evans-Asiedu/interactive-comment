@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ActionButton from "./actionButton";
 import CommentBody from "./commentBody";
 import CommentHeader from "./commentHeader";
 import VotingButton from "./voting";
 import AddCommentForm from "./addCommentForm";
 import data from "../services/data.json";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 const URL = process.env.PUBLIC_URL;
 const currentUser = data.currentUser;
@@ -13,6 +14,14 @@ const CommnetCard = ({ comment, isReply, onAddReply, onEdit }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
+
+  const cancelEdit = () => { 
+    setIsEditing(false)
+    setShowReplyForm(false)
+    setEditedContent(comment.content)
+  }
+  const commentRef = useRef(null);
+  useOutsideClick(commentRef, cancelEdit); 
 
   const handleReplyClick = () => {
     setShowReplyForm(!showReplyForm);
@@ -42,7 +51,7 @@ const CommnetCard = ({ comment, isReply, onAddReply, onEdit }) => {
 
   return (
     <>
-      <article className={isReply ? "comment comment--reply" : "comment"}>
+      <article className={isReply ? "comment comment--reply" : "comment"} ref={commentRef}>
         <VotingButton />
 
         <div style={{width: "100%"}}>
