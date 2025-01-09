@@ -12,7 +12,7 @@ const currentUser = data.currentUser;
 const CommnetCard = ({ comment, isReply, onAddReply, onEdit }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(comment?.replyingTo || '' + comment.content);
+  const [editedContent, setEditedContent] = useState(comment.content);
 
   const handleReplyClick = () => {
     setShowReplyForm(!showReplyForm);

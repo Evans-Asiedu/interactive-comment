@@ -9,6 +9,20 @@ export const getReplies = (commentId) => {
   return comment ? comment.replies : [];
 };
 
+const findCommentIndexPath = (commentsArray, commentId, path = []) => {
+  for (let i = 0; i < commentsArray.length; i++) {
+    const comment = commentsArray[i];
+    if (comment.id === commentId) {
+      return [...path, i]; // Found the comment, return its path
+    }
+    if (comment.replies && comment.replies.length > 0) {
+      const result = findCommentIndexPath(comment.replies, commentId, [...path, i]);
+      if (result) return result; // Return if found in replies
+    }
+  }
+  return null; // Return null if not found
+};
+
 export const addComment = (content) => {
   const newComment = {
     id: Date.now(),
@@ -59,11 +73,20 @@ export const removeComment = (id) => {
 };
 
 export const editComment = (commentId, editedContent) => {
-  const comment = data.comments.find((c) => c.id === commentId);
-  if (!comment) return null;
+  const commentIndexPath = findCommentIndexPath(data.comments, commentId);
+  console.log(commentIndexPath);
+  
+  if (data.comments[commentIndexPath[0]].replies.length > 0 ){
+    const editedComment = data.comments[commentIndexPath[0]].replies[commentIndexPath[1]];
+    editedComment.content = editedContent;
 
-  const updatedComments = data.comments.map((comment) =>
-    comment.id === commentId ? { ...comment, content: editedContent } : comment)
+    data.comments[commentIndexPath[0]].replies[commentIndexPath[1]] = editedComment;
+  } else {
+    const editedComment = data.comments[commentIndexPath[0]];
+    editedComment.content = editedContent;
 
-  return updatedComments;
+    data.comments[commentIndexPath[0]] = editedComment;
+  }
+
+  return data.comments;
 };
