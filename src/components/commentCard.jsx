@@ -67,7 +67,7 @@ const CommnetCard = ({ comment, isReply, onAddReply, onEdit, onDelete }) => {
     <>
       <article
         className={isReply ? "comment comment--reply" : "comment"}
-        ref={commentRef}
+        // ref={commentRef}
       >
         <VotingButton />
 
