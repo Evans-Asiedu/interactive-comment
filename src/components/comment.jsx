@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import CommnetCard from "./commentCard";
+import React from "react";
 import { getReplies } from "../services/commentService";
+import CommnetCard from "./commentCard";
 
-const Comments = ({ comments, onAddReply, onEdit }) => {
+const Comments = ({ comments, onAddReply, onEdit, onDelete }) => {
   const renderReplyCard = (commentId) => {
     const replies = getReplies(commentId);
     return replies.map((r) => (
@@ -12,6 +12,7 @@ const Comments = ({ comments, onAddReply, onEdit }) => {
         isReply={true}
         onAddReply={onAddReply}
         onEdit={onEdit}
+        onDelete={onDelete}
       />
     ));
   };
@@ -26,6 +27,7 @@ const Comments = ({ comments, onAddReply, onEdit }) => {
             isReply={false}
             onAddReply={onAddReply}
             onEdit={onEdit}
+            onDelete={onDelete}
           />
           {renderReplyCard(c.id)}
         </>

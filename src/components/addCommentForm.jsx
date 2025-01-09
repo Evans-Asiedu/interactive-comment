@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Button from "./button";
 import data from "../services/data.json";
+import Button from "./button";
 
 const URL = process.env.PUBLIC_URL;
-const currentUser = data.currentUser
+const currentUser = data.currentUser;
 
 const AddCommentForm = ({ onAddComment, initialValue = "" }) => {
   const [comment, setComment] = useState(initialValue);
@@ -37,7 +37,11 @@ const AddCommentForm = ({ onAddComment, initialValue = "" }) => {
         onChange={(e) => setComment(e.target.value)} //update state on input change
       />
 
-      <Button name="send" onClick={() => handleAddComment} />
+      <Button
+        name="send"
+        onClick={() => handleAddComment}
+        classname={"btn btn--primary"}
+      />
     </form>
   );
 };

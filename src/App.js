@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 //import './App.css';
 
-import ActionButton from "./components/actionButton";
-import CommentBody from "./components/commentBody";
-import Button from "./components/button";
-import CommentHeader from "./components/commentHeader";
 import AddCommentForm from "./components/addCommentForm";
-import VotingButton from "./components/voting";
-import { addComment, getComments, addReply, editComment } from "./services/commentService";
-import CommnetCard from "./components/commentCard";
 import Comments from "./components/comment";
+import {
+  addComment,
+  addReply,
+  editComment,
+  getComments,
+  removeComment,
+} from "./services/commentService";
 
 const URL = process.env.PUBLIC_URL;
 
@@ -40,7 +40,12 @@ class App extends Component {
   handleEditComment = (commentId, newContent) => {
     const updatedComments = editComment(commentId, newContent);
     this.setState({ comments: updatedComments });
-  }
+  };
+
+  handleDelete = (commentId) => {
+    removeComment(commentId);
+    this.setState({});
+  };
 
   render() {
     const { comments } = this.state;
@@ -49,7 +54,12 @@ class App extends Component {
       <>
         <div className="app">
           <div className="scrollable-content">
-            <Comments comments={comments} onAddReply={this.handleAddReply} onEdit={this.handleEditComment} />
+            <Comments
+              comments={comments}
+              onAddReply={this.handleAddReply}
+              onEdit={this.handleEditComment}
+              onDelete={this.handleDelete}
+            />
           </div>
           <AddCommentForm onAddComment={this.handleAddComment} />
         </div>
