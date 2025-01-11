@@ -66,7 +66,7 @@ const CommnetCard = ({ comment, isReply, onAddReply, onEdit, onDelete }) => {
   return (
     <div className={isReply ? "comment--reply" : ""} ref={commentRef}>
       <article className="comment">
-        <VotingButton />
+        <VotingButton votes={comment.score} />
 
         <div style={{ width: "100%" }}>
           <CommentHeader comment={comment} />
