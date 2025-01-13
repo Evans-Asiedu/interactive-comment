@@ -64,7 +64,7 @@ const CommnetCard = ({ comment, isReply, onAddReply, onEdit, onDelete }) => {
   const isOwner = comment.user.username === currentUser.username;
 
   return (
-    <div className={isReply ? "comment--reply" : ""} ref={commentRef}>
+    <div className={isReply ? "comment--reply" : ""}>
       <article className="comment">
         <VotingButton votes={comment.score} />
 
