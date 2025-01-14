@@ -51,19 +51,19 @@ class App extends Component {
     const { comments } = this.state;
 
     return (
-      <>
         <div className="app">
-          <div className="scrollable-content">
+          {/* <div className="scrollable-content"> */}
             <Comments
               comments={comments}
               onAddReply={this.handleAddReply}
               onEdit={this.handleEditComment}
               onDelete={this.handleDelete}
             />
-          </div>
+          {/* </div> */}
+          <div id="add-comment-container">
           <AddCommentForm onAddComment={this.handleAddComment} />
+          </div>
         </div>
-      </>
     );
   }
 }
