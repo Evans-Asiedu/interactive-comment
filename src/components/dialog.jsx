@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "./button";
+import useOutsideClick from "../hooks/useOutsideClick";
 
 const Dialog = ({ title, content, onCancelDelete, onConfirmDelete }) => {
+  const dialogRef = useRef(null)
+
+  const onClose = ()=> {
+    onCancelDelete()
+  }
+  useOutsideClick(dialogRef, onClose)
+
   return (
-    <div className="dialog__content">
+    <div className="dialog__content" ref={dialogRef}>
       <h3>{title}</h3>
       <p className="text">{content}</p>
       <div className="dialog__button">
