@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-//import './App.css';
-
 import AddCommentForm from "./components/addCommentForm";
 import Comments from "./components/comment";
 import {
@@ -10,9 +8,8 @@ import {
   getComments,
   removeComment,
 } from "./services/commentService";
-import { saveToLocalStorage } from "./services/storageService";
 
-const URL = process.env.PUBLIC_URL;
+//const URL = process.env.PUBLIC_URL;
 
 class App extends Component {
   state = {
@@ -26,27 +23,50 @@ class App extends Component {
 
   // for handling adding of comment
   handleAddComment = (content) => {
-    addComment(content);
-    const updatedComments = getComments();
-    this.setState({ comments: updatedComments });
+    const newComment = addComment(content);
+    const comments = [...this.state.comments, newComment];
+    console.log("comments", comments);
+    this.setState({ comments });
   };
 
   // for handling replies
   handleAddReply = (commentId, replyContent, replyingTo) => {
-    addReply(commentId, replyContent, replyingTo);
-    const updatedComments = getComments();
-    this.setState({ comments: updatedComments });
+    const newReply = addReply(commentId, replyContent, replyingTo);
+    const comments = [...this.state.comments];
+    comments.find((c) => {
+      if (c.id === commentId) {
+        c.replies.push(newReply);
+        return c;
+      }
+    });
+
+    this.setState({ comments });
   };
 
   handleEditComment = (commentId, newContent) => {
-    const updatedComments = editComment(commentId, newContent);
-    this.setState({ comments: updatedComments });
+    const editedComments = editComment(commentId, newContent);
+    // Update state
+    this.setState({ comments: editedComments });
   };
 
   handleDelete = (commentId) => {
     removeComment(commentId);
 
-    this.setState({ comments: getComments() });
+    const comments = [...this.state.comments];
+
+    const commentIndex = comments.findIndex((c) => c.id === commentId);
+    if (commentIndex !== -1) {
+      comments.splice(commentIndex, 1);
+    } else {
+      comments.map((comment) => {
+        const replyIndex = comment.replies.findIndex((r) => r.id === commentId);
+        if (replyIndex !== -1) {
+          comment.replies.splice(replyIndex, 1);
+        }
+      });
+    }
+
+    this.setState({ comments });
   };
 
   render() {

@@ -44,8 +44,6 @@ export const addComment = (content) => {
     replies: [],
   };
 
-  // data.comments.push(newComment);
-
   const storedComments = getFromLocalStorage("comments") || [];
   saveToLocalStorage("comments", [...storedComments, newComment]);
 
