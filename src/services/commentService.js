@@ -1,11 +1,19 @@
 import data from "./data.json";
+import { getFromLocalStorage, saveToLocalStorage } from "./storageService";
+
+export const populateLocalStorage = () => {
+  saveToLocalStorage("comments", data.comments);
+};
 
 export const getComments = () => {
-  return data.comments;
+  const storedComments = getFromLocalStorage("comments") || [];
+  if (storedComments.length === 0) populateLocalStorage();
+  return storedComments;
 };
 
 export const getReplies = (commentId) => {
-  const comment = data.comments.find((c) => c.id === commentId);
+  const storedComments = getFromLocalStorage("comments") || [];
+  const comment = storedComments.find((c) => c.id === commentId);
   return comment ? comment.replies : [];
 };
 
@@ -16,7 +24,10 @@ const findCommentIndexPath = (commentsArray, commentId, path = []) => {
       return [...path, i]; // Found the comment, return its path
     }
     if (comment.replies && comment.replies.length > 0) {
-      const result = findCommentIndexPath(comment.replies, commentId, [...path, i]);
+      const result = findCommentIndexPath(comment.replies, commentId, [
+        ...path,
+        i,
+      ]);
       if (result) return result; // Return if found in replies
     }
   }
@@ -33,13 +44,16 @@ export const addComment = (content) => {
     replies: [],
   };
 
-  data.comments.push(newComment);
+  // data.comments.push(newComment);
+
+  const storedComments = getFromLocalStorage("comments") || [];
+  saveToLocalStorage("comments", [...storedComments, newComment]);
+
   return newComment;
 };
 
 export const addReply = (commentId, content, replyingTo) => {
-  const comment = data.comments.find((c) => c.id === commentId);
-  if (!comment) return null;
+  const storedComments = getFromLocalStorage("comments") || [];
 
   const newReply = {
     id: Date.now(),
@@ -50,43 +64,55 @@ export const addReply = (commentId, content, replyingTo) => {
     user: data.currentUser,
   };
 
-  comment.replies.push(newReply);
+  storedComments.find((c) => {
+    if (c.id === commentId) {
+      c.replies.push(newReply);
+      return c;
+    }
+  });
+
+  saveToLocalStorage("comments", storedComments);
+
   return newReply;
 };
 
 export const removeComment = (id) => {
-  const commentIndex = data.comments.findIndex((c) => c.id === id);
+  const storedComments = getFromLocalStorage("comments") || [];
+  const commentIndex = storedComments.findIndex((c) => c.id === id);
+  console.log("first called comments", storedComments);
   if (commentIndex !== -1) {
-    data.comments.splice(commentIndex, 1);
+    storedComments.splice(commentIndex, 1);
+    console.log("second remove comments:", storedComments);
+    saveToLocalStorage("comments", storedComments);
     return true;
   }
 
-  for (const comment of data.comments) {
+  storedComments.map((comment) => {
     const replyIndex = comment.replies.findIndex((r) => r.id === id);
     if (replyIndex !== -1) {
       comment.replies.splice(replyIndex, 1);
+      saveToLocalStorage("comments", storedComments);
       return true;
     }
-  }
+  });
 
   return false;
 };
 
 export const editComment = (commentId, editedContent) => {
-  const commentIndexPath = findCommentIndexPath(data.comments, commentId);
+  const storedComments = getFromLocalStorage("comments") || [];
+
+  const commentIndexPath = findCommentIndexPath(storedComments, commentId);
   console.log(commentIndexPath);
-  
-  if (data.comments[commentIndexPath[0]].replies.length > 0 ){
-    const editedComment = data.comments[commentIndexPath[0]].replies[commentIndexPath[1]];
-    editedComment.content = editedContent;
 
-    data.comments[commentIndexPath[0]].replies[commentIndexPath[1]] = editedComment;
+  if (storedComments[commentIndexPath[0]].replies.length > 0) {
+    storedComments[commentIndexPath[0]].replies[commentIndexPath[1]].content =
+      editedContent;
+    saveToLocalStorage("comments", storedComments);
   } else {
-    const editedComment = data.comments[commentIndexPath[0]];
-    editedComment.content = editedContent;
-
-    data.comments[commentIndexPath[0]] = editedComment;
+    storedComments[commentIndexPath[0]].content = editedContent;
+    saveToLocalStorage("comments", storedComments);
   }
 
-  return data.comments;
+  return storedComments;
 };

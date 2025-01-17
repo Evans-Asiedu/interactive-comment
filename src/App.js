@@ -10,6 +10,7 @@ import {
   getComments,
   removeComment,
 } from "./services/commentService";
+import { saveToLocalStorage } from "./services/storageService";
 
 const URL = process.env.PUBLIC_URL;
 
@@ -44,26 +45,27 @@ class App extends Component {
 
   handleDelete = (commentId) => {
     removeComment(commentId);
-    this.setState({});
+
+    this.setState({ comments: getComments() });
   };
 
   render() {
     const { comments } = this.state;
 
     return (
-        <div className="app">
-          {/* <div className="scrollable-content"> */}
-            <Comments
-              comments={comments}
-              onAddReply={this.handleAddReply}
-              onEdit={this.handleEditComment}
-              onDelete={this.handleDelete}
-            />
-          {/* </div> */}
-          <div id="add-comment-container">
+      <div className="app">
+        {/* <div className="scrollable-content"> */}
+        <Comments
+          comments={comments}
+          onAddReply={this.handleAddReply}
+          onEdit={this.handleEditComment}
+          onDelete={this.handleDelete}
+        />
+        {/* </div> */}
+        <div id="add-comment-container">
           <AddCommentForm onAddComment={this.handleAddComment} />
-          </div>
         </div>
+      </div>
     );
   }
 }
