@@ -16,7 +16,7 @@ class App extends Component {
     comments: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const comments = getComments();
     this.setState({ comments });
   }
@@ -74,14 +74,12 @@ class App extends Component {
 
     return (
       <div className="app">
-        {/* <div className="scrollable-content"> */}
         <Comments
           comments={comments}
           onAddReply={this.handleAddReply}
           onEdit={this.handleEditComment}
           onDelete={this.handleDelete}
         />
-        {/* </div> */}
         <div id="add-comment-container">
           <AddCommentForm onAddComment={this.handleAddComment} />
         </div>
