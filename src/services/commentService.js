@@ -6,8 +6,13 @@ export const populateLocalStorage = () => {
 };
 
 export const getComments = () => {
-  const storedComments = getFromLocalStorage("comments") || [];
-  if (storedComments.length === 0) populateLocalStorage();
+  let storedComments = getFromLocalStorage("comments");
+
+  if (!storedComments || storedComments.length === 0) {
+    populateLocalStorage();
+    storedComments = data.comments;
+  }
+
   return storedComments;
 };
 
