@@ -1,14 +1,14 @@
 import React from "react";
 import { getReplies } from "../services/commentService";
-import CommnetCard from "./commentCard";
+import CommentCard from "./commentCard";
 
 const Comments = ({ comments, onAddReply, onEdit, onDelete }) => {
   const renderReplyCard = (commentId) => {
     const replies = getReplies(commentId);
     return replies.map((r) => (
-      <CommnetCard
-        comment={r}
+      <CommentCard
         key={r.id}
+        comment={r}
         isReply={true}
         onAddReply={onAddReply}
         onEdit={onEdit}
@@ -20,17 +20,17 @@ const Comments = ({ comments, onAddReply, onEdit, onDelete }) => {
   return (
     <div className="comments">
       {comments.map((c) => (
-        <>
-          <CommnetCard
-            comment={c}
+        <React.Fragment key={c.id}>
+          <CommentCard
             key={c.id}
+            comment={c}
             isReply={false}
             onAddReply={onAddReply}
             onEdit={onEdit}
             onDelete={onDelete}
           />
           {renderReplyCard(c.id)}
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

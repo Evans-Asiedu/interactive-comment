@@ -54,19 +54,19 @@ class App extends Component {
 
     const comments = [...this.state.comments];
 
-    const commentIndex = comments.findIndex((c) => c.id === commentId);
-    if (commentIndex !== -1) {
-      comments.splice(commentIndex, 1);
-    } else {
-      comments.map((comment) => {
-        const replyIndex = comment.replies.findIndex((r) => r.id === commentId);
-        if (replyIndex !== -1) {
-          comment.replies.splice(replyIndex, 1);
-        }
-      });
-    }
+    const updatedComments = comments.filter((comment) => {
+      if (comment.id === commentId) {
+        return false;
+      }
 
-    this.setState({ comments });
+      comment.replies = comment.replies.filter(
+        (reply) => reply.id !== commentId
+      );
+
+      return true;
+    });
+
+    this.setState({ comments: updatedComments });
   };
 
   render() {

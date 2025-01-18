@@ -11,7 +11,7 @@ import VotingButton from "./voting";
 const URL = process.env.PUBLIC_URL;
 const currentUser = data.currentUser;
 
-const CommnetCard = ({ comment, isReply, onAddReply, onEdit, onDelete }) => {
+const CommentCard = ({ comment, isReply, onAddReply, onEdit, onDelete }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState(comment.content);
@@ -140,4 +140,4 @@ const CommnetCard = ({ comment, isReply, onAddReply, onEdit, onDelete }) => {
   );
 };
 
-export default CommnetCard;
+export default CommentCard;
