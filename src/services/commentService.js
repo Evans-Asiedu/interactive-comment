@@ -53,6 +53,8 @@ export const addComment = (content) => {
 export const addReply = (commentId, content, replyingTo) => {
   const storedComments = getFromLocalStorage("comments") || [];
 
+  const commentIndexPath = findCommentIndexPath(storedComments, commentId);
+
   const newReply = {
     id: Date.now(),
     content,
@@ -62,13 +64,7 @@ export const addReply = (commentId, content, replyingTo) => {
     user: data.currentUser,
   };
 
-  storedComments.find((c) => {
-    if (c.id === commentId) {
-      c.replies.push(newReply);
-      return c;
-    }
-  });
-
+  storedComments[commentIndexPath[0]].replies.push(newReply);
   saveToLocalStorage("comments", storedComments);
 
   return newReply;
